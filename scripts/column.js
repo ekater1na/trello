@@ -3,22 +3,18 @@ const Column = {
     dragged: null,
     process (columnElement) {
         const spanAction_addNote = columnElement.querySelector('[data-action-addNote]')
-        const noteElement = document.createElement('div')
     
         spanAction_addNote.addEventListener('click', (event) => {
-            noteElement.classList.add('note')
-            noteElement.setAttribute('graggable', 'true')
-            noteElement.setAttribute('data-note-id', Note.idCounter)
-            Note.idCounter++
-    
+            const noteElement = Note.create()
+            
             columnElement.querySelector('[data-notes]').append(noteElement)
-            Note.process(noteElement)
-    
-            headerElement.setAttribute('contenteditable', 'true')
-            headerElement.focus()
+
+            noteElement.setAttribute('contenteditable', 'true')
+            noteElement.focus()
         })
     
         const headerElement = columnElement.querySelector('.column-header') 
+        
         headerElement.addEventListener('dblclick', (event) => {
             headerElement.setAttribute('contenteditable', 'true') 
             setCaret(headerElement)
@@ -34,8 +30,6 @@ const Column = {
         
         columnElement.addEventListener('dragover', Column.dragover)
         columnElement.addEventListener('drop', Column.drop)
-
-        
     },
 
    dragover (event) {
