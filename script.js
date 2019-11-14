@@ -1,6 +1,6 @@
 document
     .querySelectorAll('.column')
-    .forEach(columnProcess)
+    .forEach(Column.process)
 
 document
     .querySelector('[data-action-addColumn]')
@@ -16,7 +16,7 @@ document
                                     </p>`
         Column.idCounter++
         document.querySelector('.columns').append(columnElement)
-        columnProcess(columnElement)
+        process(columnElement)
     })
 
 document
