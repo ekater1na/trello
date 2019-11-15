@@ -16,7 +16,7 @@ document
                                     </p>`
         Column.idCounter++
         document.querySelector('.columns').append(columnElement)
-        process(columnElement)
+        Column.process(columnElement)
     })
 
 document

@@ -1,6 +1,7 @@
 const Note = {
    idCounter: 8,
    dragged: null,
+
    process(noteElement) {
     noteElement.addEventListener('dblclick',  (event) => {
         noteElement.setAttribute('contenteditable', 'true') 
@@ -14,8 +15,8 @@ const Note = {
         noteElement.removeAttribute('contenteditable') 
         noteElement.setAttribute('draggable', 'true')
         noteElement.closest('.column').setAttribute('draggable', 'true')
-        noteElement.textContent = noteElement.textContent.trim()
-        if (!noteElement.textContent.length){
+        
+        if (!noteElement.textContent.trim().length){
             noteElement.remove()
         }
     })
@@ -30,11 +31,13 @@ const Note = {
 
    create () {
     const noteElement = document.createElement('div')
+
     noteElement.classList.add('note')
     noteElement.setAttribute('graggable', 'true')
     noteElement.setAttribute('data-note-id', Note.idCounter)
     
     Note.idCounter++
+
     Note.process(noteElement)
 
     return noteElement
@@ -43,42 +46,56 @@ const Note = {
    dragstart (event) {
         Note.dragged = this
         this.classList.add('dragged')   
+
+        event.stopPropagation()
     },
 
     dragend (event) {
-        Note.dragged = null
+        event.stopPropagation()
+
+        Note.dragged = this
         this.classList.remove('dragged')  
 
         document
-            .querySelectorAll('.note')  
-            .forEach(x => x.classList.remove('under'))    
+			.querySelectorAll('.note')
+			.forEach(x => x.classList.remove('under'))  
+
+            event.stopPropagation()
     },
 
     dragenter (event) {
-        if (this === Note.dragged) {
-            return
-        }
-        this.classList.add('under')
+       event.stopPropagation()
+		if (this === Note.dragged) {
+			return
+		}
+
+		this.classList.add('under')
     },
 
     dragover (event) {
-        event.preventDefault
-        if (this === Note.dragged) {
+       
+        event.stopPropagation()
+        event.preventDefault()
+
+        if (!Note.dragged || this === Note.dragged) {
             return
         }
     },
 
     dragleave (event) {
-        if (this === Note.dragged) {
-            return
-        }
-        this.classList.remove('under')
+        event.stopPropagation()
+
+        if (!Note.dragged || this === Note.dragged) {
+			return
+		}
+
+		this.classList.remove('under')
     },
 
     drop (event) {
         event.stopPropagation()
 
-        if (!Column.dragged || this === Note.dragged) {
+        if (!Note.dragged || this === Note.dragged) {
             return
         }   
 
@@ -87,7 +104,7 @@ const Note = {
             const indexA = note.indexOf(this);
             const indexB = note.indexOf(Note.dragged);
 
-            if (indexA > indexB) {
+            if (indexA < indexB) {
                 this.parentElement.insertBefore(Note.dragged, this)
             }
             else {
