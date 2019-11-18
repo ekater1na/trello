@@ -18,10 +18,10 @@ class Column {
         }
 
 		element.innerHTML = 
-`<p class="column-header">В плане</p>
+`<p class="column-header">Plans</p>
 <div data-notes></div>
 <p class="column-footer">
-	<span data-action-addNote class="action">+ Добавить карточку</span>
+	<span data-action-addNote class="action">+ Add card</span>
 </p>`
         const spanAction_addNote = element.querySelector('[data-action-addNote]')
             
