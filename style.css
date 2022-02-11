@@ -10,6 +10,14 @@ body {
     box-sizing: border-box;
 }
 
+li {
+    color: aqua;
+    font-weight: 700;
+    background-color: blue;
+    list-style: square;
+}
+
+
 .container {
 	height: 100vh;
 	padding: 10px;
