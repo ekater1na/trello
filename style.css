@@ -10,6 +10,10 @@ body {
     box-sizing: border-box;
 }
 
+button {
+    background-color: pink;
+}
+
 .container {
 	height: 100vh;
 	padding: 10px;
