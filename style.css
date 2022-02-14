@@ -18,6 +18,11 @@ li {
 }
 
 
+button {
+    background-color: pink;
+    border-radius:30%;
+}
+
 .container {
 	height: 100vh;
 	padding: 10px;
@@ -131,5 +136,5 @@ li {
 }
 
 .note.under {
-	opacity: 0.5;
+	opacity: 0.7;
 }
