@@ -11,7 +11,7 @@ body {
 }
 
 button {
-    background-color: black;
+    background-color: gray;
     border-radius:30%;
 }
 
@@ -39,7 +39,7 @@ button {
 }
 
 .column {
-    background: yellowgreen;
+    background: red;
     padding: 10px 15px;
 }
 
